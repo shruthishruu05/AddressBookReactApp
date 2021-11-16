@@ -8,6 +8,9 @@ class AxiosService {
     getService(url = '', tokenRequired = false, httpOptions = null) {
         return axios.get(url, tokenRequired && httpOptions);
     }
+    deleteService(url = '', tokenRequired = false, httpOptions = null) {
+        return axios.delete(url, tokenRequired && httpOptions);
+    }
 }
 
 module.exports = new AxiosService()
