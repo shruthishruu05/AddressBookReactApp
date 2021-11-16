@@ -99,7 +99,7 @@ const Form = (props) => {
         addressbookService.addContact(object).then(data => {
             console.log("Contact added");
             console.log(data);
-            setDisplayMessage("Contact Added Successfully");
+            setDisplayMessage("Details Added Successfully!!");
             setTimeout(() => {
                 setDisplayMessage("");
             }, 5000);
