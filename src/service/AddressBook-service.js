@@ -1,4 +1,5 @@
 import config from '../config/config';
+
 const axios = require('axios').default;
 
 export default class AddressBookService {
@@ -6,5 +7,6 @@ export default class AddressBookService {
     addContact(data) {
         console.log("URL", this.baseUrl);
         return axios.post(`${this.baseUrl}AddressBook`, data);
+
     }
 } 
