@@ -9,4 +9,7 @@ export default class AddressBookService {
         return axios.post(`${this.baseUrl}AddressBook`, data);
 
     }
+    getAllContacts() {
+        return axios.get(`${this.baseUrl}AddressBook`);
+    }
 } 
