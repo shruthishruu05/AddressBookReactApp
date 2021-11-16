@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import './display.scss';
 import deleteIcon from '../../assets/delete-black-18dp.svg';
 import editIcon from '../../assets/create-black-18dp.svg';
@@ -16,6 +17,7 @@ const Display = (props) => {
         })
         window.location.reload("/");
     }
+
     return (
         <table id="display" className="table">
             <tbody>
@@ -29,17 +31,19 @@ const Display = (props) => {
                     <th></th>
                 </tr>
                 {
-                    props.contactArray && props.contactArray.map((elememt, index) => (
+                    props.contactArray && props.contactArray.map((element, index) => (
                         <tr key={index}>
-                            <td>{elememt.name}</td>
-                            <td>{elememt.address}</td>
-                            <td>{elememt.city}</td>
-                            <td>{elememt.state}</td>
-                            <td>{elememt.zip}</td>
-                            <td>{elememt.phoneNumber}</td>
+                            <td>{element.name}</td>
+                            <td>{element.address}</td>
+                            <td>{element.city}</td>
+                            <td>{element.state}</td>
+                            <td>{element.zip}</td>
+                            <td>{element.phoneNumber}</td>
                             <td>
-                                <img onClick={() => remove(elememt.id)} alt="delete" src={deleteIcon} />
-                                <img alt="edit" src={editIcon} />
+                                <img onClick={() => remove(element.id)} alt="delete" src={deleteIcon} />
+                                <Link to={`/update/${element.id}`} > 
+                                    <img src={editIcon} alt="edit" /> 
+                                </Link>
                             </td>
                         </tr>
                     ))
