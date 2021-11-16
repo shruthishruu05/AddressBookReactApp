@@ -10,6 +10,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/add"><Form /></Route>
+          <Route exact path="/update/:id"><Form /></Route>
           <Route exact path=""><Home /></Route>
         </Switch>
       </BrowserRouter>
