@@ -102,14 +102,14 @@ const Form = (props) => {
             setDisplayMessage("Contact Added Successfully");
             setTimeout(() => {
                 setDisplayMessage("");
-            }, 3000);
+            }, 5000);
         }).catch(error => {
             console.log("Error while adding");
             console.log(error)
             setDisplayMessage("Error while adding contact");
             setTimeout(() => {
                 setDisplayMessage("");
-            }, 3000);
+            }, 5000);
         })
     }
 
