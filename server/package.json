@@ -1,0 +1,12 @@
+{
+    "name": "server",
+    "version": "1.0.0",
+    "dependencies": "",
+    "scripts": {
+        "start": "json-server --watch ./addressbookdb.json --port 3003",
+        "test": "echo \"Error: no test specification\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}
