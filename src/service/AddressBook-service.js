@@ -1,15 +1,19 @@
 import config from '../config/config';
-
-const axios = require('axios').default;
+import AxiosService from './AxiosService';
 
 export default class AddressBookService {
     baseUrl = config.baseUrl;
+
     addContact(data) {
         console.log("URL", this.baseUrl);
-        return axios.post(`${this.baseUrl}AddressBook`, data);
+        return AxiosService.postService(`${this.baseUrl}AddressBook`, data);
+    }
 
-    }
     getAllContacts() {
-        return axios.get(`${this.baseUrl}AddressBook`);
+        return AxiosService.getService(`${this.baseUrl}AddressBook`);
     }
-} 
+
+    deleteContact(id) {
+        return AxiosService.deleteService(`${this.baseUrl}AddressBook/${id}`);
+    }
+}
