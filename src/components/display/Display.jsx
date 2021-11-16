@@ -2,8 +2,20 @@ import React from "react";
 import './display.scss';
 import deleteIcon from '../../assets/delete-black-18dp.svg';
 import editIcon from '../../assets/create-black-18dp.svg';
+import AddressBookService from "../../service/AddressBook-service";
 
 const Display = (props) => {
+
+    const addressbookService = new AddressBookService();
+
+    const remove = (id) => {
+        addressbookService.deleteContact(id).then(data => {
+            console.log("Deleted data: ", data);
+        }).catch(error => {
+            console.log("Error after ", error);
+        })
+        window.location.reload("/");
+    }
     return (
         <table id="display" className="table">
             <tbody>
@@ -26,7 +38,7 @@ const Display = (props) => {
                             <td>{elememt.zip}</td>
                             <td>{elememt.phoneNumber}</td>
                             <td>
-                                <img alt="delete" src={deleteIcon} />
+                                <img onClick={() => remove(elememt.id)} alt="delete" src={deleteIcon} />
                                 <img alt="edit" src={editIcon} />
                             </td>
                         </tr>
