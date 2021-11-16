@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "dependencies": "",
     "scripts": {
-        "start": "json-server --watch ./addressbookdb.json --port 3003",
+        "start": "json-server --watch ./addressbookdb.json --port 3002",
         "test": "echo \"Error: no test specification\" && exit 1"
     },
     "keywords": [],
