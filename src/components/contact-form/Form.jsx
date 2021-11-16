@@ -3,19 +3,20 @@ import './form.scss';
 import logo from '../../assets/logo.png';
 import CancelButton from '../../assets/cancel.png'
 import { Link } from 'react-router-dom';
+import AddressBookService from "../../service/AddressBook-service";
 
 const Form = (props) => {
     let initialValue = {
         name: '',
         allCity: [
-            'Bangalore', 'Chennai', 'Hyderabad', 'Maduri', 'Udupi', 'Vijayawada'
+            'Bangalore', 'Chennai', 'Hyderabad'
         ],
         allstates: [
             'Karnataka', 'Telengana', 'Tamilnadu'
         ],
         city: '',
         state: '',
-        addess: '',
+        address: '',
         zip: '',
         phoneNumber: '',
         id: '',
@@ -24,13 +25,16 @@ const Form = (props) => {
             name: '',
             city: '',
             state: '',
-            addess: '',
+            address: '',
             zip: '',
             phoneNumber: ''
         }
     }
 
     const [formValue, setForm] = useState(initialValue);
+    const [displayMeassage, setDisplayMessage] = useState("");
+
+    const addressbookService = new AddressBookService();
 
     const changeValue = (event) => {
         setForm({ ...formValue, [event.target.name]: event.target.value })
@@ -42,7 +46,7 @@ const Form = (props) => {
             name: '',
             city: '',
             state: '',
-            addess: '',
+            address: '',
             zip: '',
             phoneNumber: ''
         }
@@ -58,8 +62,8 @@ const Form = (props) => {
             error.city = 'City is required field'
             isError = true;
         }
-        if (formValue.addess.length < 1) {
-            error.addess = 'Address is required field'
+        if (formValue.address.length < 1) {
+            error.address = 'Address is required field'
             isError = true;
         }
         if (formValue.zip.length < 1) {
@@ -76,6 +80,37 @@ const Form = (props) => {
 
     const save = async (event) => {
         event.preventDefault();
+        if (await validData()) {
+            console.log('error', formValue);
+            return;
+        }
+
+        let object = {
+            name: formValue.name,
+            phoneNumber: formValue.phoneNumber,
+            city: formValue.city,
+            state: formValue.state,
+            address: formValue.address,
+            id: '',
+            zip: formValue.zip,
+        }
+
+        console.log(object)
+        addressbookService.addContact(object).then(data => {
+            console.log("Contact added");
+            console.log(data);
+            setDisplayMessage("Contact Added Successfully");
+            setTimeout(() => {
+                setDisplayMessage("");
+            }, 3000);
+        }).catch(error => {
+            console.log("Error while adding");
+            console.log(error)
+            setDisplayMessage("Error while adding contact");
+            setTimeout(() => {
+                setDisplayMessage("");
+            }, 3000);
+        })
     }
 
     const reset = () => {
@@ -104,19 +139,19 @@ const Form = (props) => {
                     </div>
                     <div className="row-content">
                         <label className="label text" htmlFor="name">Name</label>
-                        <input className="input" type="text" id="name" name="name" placeholder="Enter the name" value={formValue.name} onChange={changeValue} />
+                        <input className="input" type="text" id="name" name="name" placeholder="" value={formValue.name} onChange={changeValue} />
                         <div className="error">{formValue.error.name}</div>
                     </div>
                     <div className="row-content">
                         <label className="label text" htmlFor="phoneNumber">Phone Number</label>
-                        <input className="input" type="tel" id="phoneNumber" name="phoneNumber" placeholder= "Enter the phone number"value={formValue.phoneNumber} onChange={changeValue} />
+                        <input className="input" type="tel" id="phoneNumber" name="phoneNumber" value={formValue.phoneNumber} onChange={changeValue} />
                         <div className="error">{formValue.error.phoneNumber}</div>
                     </div>
                     <div className="row-content">
                         <div className="text-row">
                             <label className="label text" htmlFor="address">Address</label>
-                            <textarea id="address" className="input" name="address" placeholder="Enter the Address" style={{ height: '100px' }} value={formValue.addess} onChange={changeValue}></textarea>
-                            <div className="error">{formValue.error.addess}</div>
+                            <textarea id="address" className="input" name="address" placeholder="" style={{ height: '100px' }} value={formValue.address} onChange={changeValue}></textarea>
+                            <div className="error">{formValue.error.address}</div>
                         </div>
                     </div>
                     <div className="row-content location-row">
@@ -124,10 +159,12 @@ const Form = (props) => {
                             <label className="label text" htmlFor="city">City</label>
                             <select value={formValue.city} onChange={changeValue} id="city" name="city">
                                 <option value="none" selected disabled hidden>Select City</option>
-                                <option>Select city</option>
                                 <option value="Bangalore">Bangalore</option>
                                 <option value="Chennai">Chennai</option>
                                 <option value="Hyderabad">Hyderabad</option>
+                                <option value="Chennai">Maduri</option>
+                                <option value="Bangalore">Udupi</option>
+                                <option value="Hyderabad">Vijayawada</option>
                             </select>
                             <div className="error">{formValue.error.city}</div>
                         </div>
@@ -135,7 +172,6 @@ const Form = (props) => {
                             <label className="label text" htmlFor="state">State</label>
                             <select value={formValue.state} onChange={changeValue} id="state" name="state">
                                 <option value="none" selected disabled hidden>Select State</option>
-                                <option>Select State</option>
                                 <option value="Karnataka">Karnataka</option>
                                 <option value="Telengana">Telengana</option>
                                 <option value="Tamilnadu">Tamil Nadu</option>
@@ -144,13 +180,16 @@ const Form = (props) => {
                         </div>
                         <div>
                             <label className="label text" htmlFor="zip">Zip Code</label>
-                            <input className="input" type="text" id="zip" name="zip" placeholder = "Enter the zip code" onChange={changeValue} />
+                            <input className="input" type="text" id="zip" name="zip" onChange={changeValue} />
                             <div className="error">{formValue.error.zip}</div>
                         </div>
                     </div>
                     <div className="buttonParent">
                         <button type="submit" className="button submitButton" id="addButton" >{formValue.isUpdate ? 'Update' : 'Submit'}</button>
                         <button type="reset" onClick={reset} className="button resetButton">Reset</button>
+                    </div>
+                    <div className="displaymessage">
+                        {displayMeassage}
                     </div>
                 </form>
             </div>
