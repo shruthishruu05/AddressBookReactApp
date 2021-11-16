@@ -1,0 +1,31 @@
+{
+  "AddressBook": [
+    {
+      "name": "Shru",
+      "phoneNumber": "911088",
+      "city": "Chennai",
+      "state": "Telengana",
+      "address": "btm",
+      "id": "smgkIPU",
+      "zip": "560078"
+    },
+    {
+      "name": "Mahesh",
+      "phoneNumber": "7899387072",
+      "city": "Hyderabad",
+      "state": "Tamilnadu",
+      "address": "btm",
+      "id": "hVyEEFz",
+      "zip": "560075"
+    },
+    {
+      "name": "Shruthi",
+      "phoneNumber": "911088",
+      "city": "Chennai",
+      "state": "Telengana",
+      "address": "btm",
+      "zip": "560078",
+      "id": "o_WihO-"
+    }
+  ]
+}
