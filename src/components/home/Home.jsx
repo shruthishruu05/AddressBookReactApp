@@ -1,13 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import logo from '../../assets/logo.png';
 import addIcon from '../../assets/add-24px.svg';
 import './home.scss';
+
 import AddressBookService from "../../service/AddressBook-service";
 import Display from '../display/Display';
 
 class Home extends React.Component {
-
+    //called whenever a component is created
     constructor() {
         super()
         this.state = {
@@ -24,8 +26,8 @@ class Home extends React.Component {
 
     getAllContacts = () => {
         this.addressBookService.getAllContacts().then(data => {
-            this.setState({ contactArray: data.data })
-            console.log("Data after get ", data.data);
+            this.setState({ contactArray: data.data.data })
+            console.log("Data after get ", data.data.data);
         }).catch(error => {
             console.log("Error after ", error);
         })
@@ -48,7 +50,9 @@ class Home extends React.Component {
                         <div className="contact-detail-text">
                             Person Details
                         </div>
-                        <Link to="/add" className="add-button flex-row-center"><img src={addIcon} alt="" />Add Person</Link>
+                        <Link to="/add" className="add-button flex-row-center">
+                            <img src={addIcon} alt="" />Add Person
+                        </Link>
                     </div>
                     <div className="table-main">
                         <Display contactArray={this.state.contactArray} />

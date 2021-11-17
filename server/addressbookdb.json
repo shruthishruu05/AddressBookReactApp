@@ -1,31 +1,58 @@
 {
   "AddressBook": [
     {
-      "name": "Shru",
-      "phoneNumber": "911088",
-      "city": "Chennai",
+      "name": "Shruthi M",
+      "phoneNumber": "9110884694",
+      "city": "Hyderabad",
       "state": "Telengana",
       "address": "btm",
-      "id": "smgkIPU",
+      "id": 1,
+      "zip": "560076"
+    },
+    {
+      "name": "Mahesh Kumar S",
+      "phoneNumber": "8899665544",
+      "city": "Bangalore",
+      "state": "Karnataka",
+      "address": "JP Nagar",
+      "id": 2,
       "zip": "560078"
     },
     {
-      "name": "Mahesh",
-      "phoneNumber": "7899387072",
-      "city": "Hyderabad",
-      "state": "Tamilnadu",
+      "name": "Ananya  KY",
+      "phoneNumber": "7896541236",
+      "city": "Bangalore",
+      "state": "Karnataka",
       "address": "btm",
-      "id": "hVyEEFz",
-      "zip": "560075"
+      "id": 3,
+      "zip": "560078"
     },
     {
-      "name": "Shruthi",
-      "phoneNumber": "911088",
+      "name": "Chinmai Kanth",
+      "phoneNumber": "8965478596",
       "city": "Chennai",
       "state": "Telengana",
-      "address": "btm",
-      "zip": "560078",
-      "id": "o_WihO-"
+      "address": "jayanagar",
+      "id": 4,
+      "zip": "569874"
+    },
+    {
+      "name": "Anu Prasad",
+      "phoneNumber": "7896451236",
+      "city": "Chennai",
+      "state": "Telengana",
+      "address": "jp nagar",
+      "id": 5,
+      "zip": "560078"
+    },
+    {
+      "name": "Monika",
+      "phoneNumber": "7896325412",
+      "city": "Hyderabad",
+      "state": "Tamilnadu",
+      "address": "rr nagar",
+      "id": 6,
+      "zip": "568745"
     }
   ]
 }

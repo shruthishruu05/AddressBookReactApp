@@ -20,7 +20,8 @@ const Display = (props) => {
 
     return (
         <table id="display" className="table">
-            <tbody>
+        
+           <tbody>
                 <tr key={-1}>
                     <th>Name</th>
                     <th>Address</th>
@@ -30,8 +31,11 @@ const Display = (props) => {
                     <th>Phone Number</th>
                     <th></th>
                 </tr>
+                
                 {
+                   
                     props.contactArray && props.contactArray.map((element, index) => (
+                        
                         <tr key={index}>
                             <td>{element.name}</td>
                             <td>{element.address}</td>
@@ -40,15 +44,17 @@ const Display = (props) => {
                             <td>{element.zip}</td>
                             <td>{element.phoneNumber}</td>
                             <td>
-                                <img onClick={() => remove(element.id)} alt="delete" src={deleteIcon} />
-                                <Link to={`/update/${element.id}`} > 
+                                <img onClick={() => remove(element.addressId)} alt="delete" src={deleteIcon} />
+                                <Link to={`/update/${element.addressId}`} > 
                                     <img src={editIcon} alt="edit" /> 
                                 </Link>
                             </td>
                         </tr>
                     ))
-                }
+                }   
+                
             </tbody>
+           
         </table>
     )
 }
