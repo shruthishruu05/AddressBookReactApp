@@ -20,7 +20,7 @@ const Form = (props) => {
         address: '',
         zip: '',
         phoneNumber: '',
-        id: '',
+        addressId: '',
         isUpdate: false,
         error: {
             name: '',
@@ -46,8 +46,8 @@ const Form = (props) => {
 
     const getDataById = (id) => {
         addressbookService.getContact(id).then((data) => {
-            console.log("Data is ", data.data);
-            let object = data.data;
+            console.log("Data is ", data.data.data);
+            let object = data.data.data;
             setData(object);
         }).catch((error) => {
             console.log("Error is ", error);
@@ -115,7 +115,7 @@ const Form = (props) => {
             city: formValue.city,
             state: formValue.state,
             address: formValue.address,
-            id: '',
+            addressId: '',
             zip: formValue.zip,
         }
 
@@ -155,7 +155,7 @@ const Form = (props) => {
     }
 
     const reset = () => {
-        setForm({ ...initialValue, id: formValue.id, isUpdate: formValue.isUpdate });
+        setForm({ ...initialValue, addressId: formValue.addressId, isUpdate: formValue.isUpdate,city:'',state:'none' });
         console.log(formValue);
     }
 
@@ -175,7 +175,7 @@ const Form = (props) => {
                     <div className="form-head">
                         <h1 className="form-head-title">Person Address Form</h1>
                         <Link to="">
-                            <img src={CancelButton} className="close-button" />
+                            <img src={CancelButton} className="close-button" alt="cancel" />
                         </Link>
                     </div>
                     <div className="row-content">
